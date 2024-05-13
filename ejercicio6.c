@@ -11,7 +11,7 @@ int main()
   {
     double multiplicacion = lastNumber * (lastNumber + 1) * (lastNumber + 2);
     arreglo[i] = 1 / multiplicacion;
-    printf("1/(%f * %f * %f) = %10f \n", lastNumber, (lastNumber + 1), (lastNumber + 2), arreglo[i]);
+    printf("1/(%f * %f * %f) = %10.10f \n", lastNumber, (lastNumber + 1), (lastNumber + 2), arreglo[i]);
     lastNumber = lastNumber + 2;
   }
   return 0;
