@@ -6,4 +6,4 @@ link de los ejercicios: https://drive.google.com/file/d/1kFr2HYZHnAtieVrKLLbrT3S
 
 ### Nota: en la rama principal, los ejercicios estan hechos con memoria dinamica, hay una rama secundaria, la cual hace los ejercicios con arreglos de manera estatica.
 
-SI alguien quiere colaborar, tiene total libertad, puede hacer un fork y una pull rq, y tambien abrir issues.
+Si alguien cree que tiene una mejor solucion a alguno de los ejercicios, o quiere colaborar, esta en total libertad de crear un fork y luego hacer una pull request, o abrir un issue.
