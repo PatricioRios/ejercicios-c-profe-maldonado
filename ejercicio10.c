@@ -66,7 +66,7 @@ void transform(char *transformed, int fecha)
     strcpy(transformed, "Diciembre");
     break;
   default:
-    strcpy(transformed, "Mes inválido"); // Handle invalid month
+    strcpy(transformed, "Mes invalido"); // Handle invalid month
     break;
   }
 }
