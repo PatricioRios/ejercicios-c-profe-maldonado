@@ -25,6 +25,8 @@ int main()
   {
     if (aux[i] == '+' || aux[i] == '-' || aux[i] == '*' || aux[i] == '/' || aux[i] == 'm')
     {
+      mux(aux, &i, &B, &A, &operacion);
+      /*
       if (aux[i] == '+')
       {
         if (A == 0.0)
@@ -141,6 +143,8 @@ int main()
           continue;
         }
       }
+      */
+      continue;
     }
     i++;
   }
@@ -152,6 +156,54 @@ int main()
   printf("Resultado : %f", A);
 
   return 0;
+}
+
+void mux(char *aux, int *i, double *B, double *A, int *operacion)
+{
+  printf("1: aux=%s,i=%d,B=%d,A=%d,operacion=%d\n", aux, *i, *B, *A, *operacion);
+  determin(operacion, aux[*i]);
+
+  if (*A == 0.0)
+  {
+    aux[*i] = '\0';
+    *A = atof(aux);
+    printf("numeros =  A = %f B = %f, operacion = %d\n", *A, *B, *operacion);
+    *i = 0;
+  }
+  else
+  {
+    aux[*i] = '\0';
+    *B = atof(aux);
+    calculate(A, *B, *operacion);
+    printf("EXTRACT B = %f\n", *B);
+    printf("numeros =  A = %f B = %f, operacion = %d\n", *A, *B, *operacion);
+    *i = 0;
+  }
+  printf("2: aux=%s,i=%d,B=%d,A=%d,operacion=%d\n", aux, *i, *B, *A, *operacion);
+}
+
+void determin(int *operation, char operationChar)
+{
+  if (operation == '+')
+  {
+    *operation = 0;
+  }
+  else if (operation == '-')
+  {
+    *operation = 1;
+  }
+  else if (operation == '*')
+  {
+    *operation = 2;
+  }
+  else if (operation == '/')
+  {
+    *operation = 3;
+  }
+  else if (operation == 'm')
+  {
+    *operation = 4;
+  }
 }
 
 /*
