@@ -10,7 +10,8 @@ realice de manera típica como por ejemplo: 5.6 * 27 o sino 3 + 6.
 
  */
 void calculate(double *A, double B, int operation);
-// void determin(char *aux, double *A, double *B, int *i, int *operacion);
+void mux(char *aux, int *i, double *B, double *A, int *operacion);
+void determinOperation(int *operation, char operationChar);
 
 int main()
 {
@@ -26,124 +27,6 @@ int main()
     if (aux[i] == '+' || aux[i] == '-' || aux[i] == '*' || aux[i] == '/' || aux[i] == 'm')
     {
       mux(aux, &i, &B, &A, &operacion);
-      /*
-      if (aux[i] == '+')
-      {
-        if (A == 0.0)
-        {
-          aux[i] = '\0';
-          A = atof(aux);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 0;
-          i = 0;
-          continue;
-        }
-        else
-        {
-          aux[i] = '\0';
-          B = atof(aux);
-          calculate(&A, B, operacion);
-          // printf("EXTRACT B = %f\n", B);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 0;
-          i = 0;
-          continue;
-        }
-      }
-      if (aux[i] == '-')
-      {
-        if (A == 0.0)
-        {
-          aux[i] = '\0';
-          A = atof(aux);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 1;
-          i = 0;
-          continue;
-        }
-        else
-        {
-          aux[i] = '\0';
-          B = atof(aux);
-          calculate(&A, B, operacion);
-          // printf("EXTRACT B = %f\n", B);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 1;
-          i = 0;
-          continue;
-        }
-      }
-      if (aux[i] == '*')
-      {
-        // printf("entro a multiplicacion");
-        if (A == 0.0)
-        {
-          aux[i] = '\0';
-          A = atof(aux);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 2;
-          i = 0;
-          continue;
-        }
-        else
-        {
-          aux[i] = '\0';
-          B = atof(aux);
-          calculate(&A, B, operacion);
-          // printf("EXTRACT B = %f\n", B);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 2;
-          i = 0;
-          continue;
-        }
-      }
-      if (aux[i] == '/')
-      {
-        if (A == 0.0)
-        {
-          aux[i] = '\0';
-          A = atof(aux);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 3;
-          i = 0;
-          continue;
-        }
-        else
-        {
-          aux[i] = '\0';
-          B = atof(aux);
-          calculate(&A, B, operacion);
-          // printf("EXTRACT B = %f\n", B);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 3;
-          i = 0;
-          continue;
-        }
-      }
-      if (aux[i] == 'm')
-      {
-        if (A == 0.0)
-        {
-          aux[i] = '\0';
-          A = atof(aux);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 4;
-          i = 0;
-          continue;
-        }
-        else
-        {
-          aux[i] = '\0';
-          B = atof(aux);
-          calculate(&A, B, operacion);
-          // printf("EXTRACT B = %f\n", B);
-          // printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, operacion);
-          operacion = 4;
-          i = 0;
-          continue;
-        }
-      }
-      */
       continue;
     }
     i++;
@@ -158,16 +41,22 @@ int main()
   return 0;
 }
 
+/*
+input:
+  aux: The array of chars contains the numbers and a operation example "10+", "10*"
+  i: the i while acumulator.
+  B: the B number of the operation.
+  A: the A number of the operation.
+  operation: is the int with contains the last operation collected.
+*/
 void mux(char *aux, int *i, double *B, double *A, int *operacion)
 {
-  printf("1: aux=%s,i=%d,B=%d,A=%d,operacion=%d\n", aux, *i, *B, *A, *operacion);
-  determin(operacion, aux[*i]);
+  determinOperation(operacion, aux[*i]);
 
   if (*A == 0.0)
   {
     aux[*i] = '\0';
     *A = atof(aux);
-    printf("numeros =  A = %f B = %f, operacion = %d\n", *A, *B, *operacion);
     *i = 0;
   }
   else
@@ -175,14 +64,17 @@ void mux(char *aux, int *i, double *B, double *A, int *operacion)
     aux[*i] = '\0';
     *B = atof(aux);
     calculate(A, *B, *operacion);
-    printf("EXTRACT B = %f\n", *B);
-    printf("numeros =  A = %f B = %f, operacion = %d\n", *A, *B, *operacion);
     *i = 0;
   }
-  printf("2: aux=%s,i=%d,B=%d,A=%d,operacion=%d\n", aux, *i, *B, *A, *operacion);
 }
 
-void determin(int *operation, char operationChar)
+/*
+This fuctions determin the operation.
+Input:
+  operation: the integer conteiner of the operation.
+  operationChar: the char container the operation in char.
+*/
+void determinOperation(int *operation, char operationChar)
 {
   if (operation == '+')
   {
@@ -205,38 +97,9 @@ void determin(int *operation, char operationChar)
     *operation = 4;
   }
 }
-
 /*
-void determin(char *aux, double *A, double *B, int *i, int *operacion)
-{
-  if (aux[*i] == '+')
-  {
-    if (*A == 0.0)
-    {
-      aux[*i] = '\0';
-      *A = atof(aux);
-      printf("numeros =  A = %f B = %f, operacion = %d\n", A, B, *operacion);
-      *operacion = 0;
-      *i = 0;
-      return;
-    }
-    else
-    {
-      aux[*i] = '\0';
-      *B = atof(aux);
-      calculate(A, *B, *operacion);
-      printf("EXTRACT B = %f\n", B);
-      printf("numeros =  A = %f B = %f, operacion = %d\n", *A, *B, operacion);
-      *operacion = 0;
-      *i = 0;
-      return;
-    }
-  }
-
-  *i++;
-}
+This function calculate the operation with A and B inputs, with the 'int operation' operation.
 */
-
 void calculate(double *A, double B, int operation)
 {
   switch (operation)
